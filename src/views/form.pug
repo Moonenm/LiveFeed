@@ -1,0 +1,51 @@
+extends layout
+
+block content
+
+
+    form(action="." method="POST")
+        table.listing-table
+            tr 
+                td 
+                    label(for="titel") Titel:
+                td 
+                    input(
+                        type="text"
+                        id="titel"
+                        name="titel"
+                        style="width:100%"
+                    )
+            tr 
+                td 
+                    label(for="link") URL:
+                td
+                    input(
+                        type="text"
+                        id="link"
+                        name="link"
+                        style="width:100%"
+                    )
+            tr 
+                td 
+                    label(for="inhoud") Inhoud:
+                td
+                    textarea(
+                        type="text"
+                        id="inhoud"
+                        name="inhoud"
+                        cols="100"
+                        rows="10"
+                    )
+            tr 
+                td 
+                    label(for="datum") Datum:
+                td
+                    input(
+                        type="text"
+                        id="datum"
+                        name="datum"
+                        style="width:100%"
+                    )
+    p
+    div(class="text-center")
+        input(type="submit" value="Submit")

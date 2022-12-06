@@ -13,11 +13,10 @@ const {admin, gebruiker} = require("../middleware/roles.js")
 
 /**
  * Homepage where all routes are shown
- */
+ *//*
 router.get('/', async (req, res) => {
   console.log('/ route called');
 
-  /*const tekst = parser.parse(await feed.find());*/
   const feeds = JSON.parse(JSON.stringify(await feed.find().sort({"datum":-1})));
   var body = "";
   for(var i=0 ;i<feeds.length;i++){  
@@ -34,16 +33,40 @@ router.get('/', async (req, res) => {
   +body
   +'</html>'
   );
+});*/
+
+router.get('/', async (req, res) => {
+  feed.find().sort({"datum":-1})
+  .then((feeds) => {
+    /*const [jaar, maand, dag] = feeds[i].datum.split('-');
+    const dagl = dag.length;
+
+    const ndag=dag.substring(0,dagl-14);
+    var datum = ndag +"-" + maand + "-" + jaar;*/
+      res.render('index', {title: 'Livefeed', feeds });
+  })
+  .catch((e) => {
+    console.log(e.message);
+    res.status(500).send(e.message);
+  })
 });
 
+/*router.get('/form', (req, res) => {
+  res.render('form', {title: 'Livefeed form'});
+});
+
+router.post('/form', async (req, res) => {
+  console.log(req.body);
+  res.send(await feed.create(req.body));
+});*/
 
 router.get('/users', [auth, admin], async (req, res) => {
   console.log('/users route called');
   try{
     res.send(await user.find());
   } catch(e) {
-    console.log(e);
-    res.sendStatus(500);
+    console.log(e.message);
+    res.Status(500).send(e.message);
   }
 });
 

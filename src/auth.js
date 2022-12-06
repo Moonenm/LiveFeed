@@ -20,19 +20,12 @@ router.post('/user/auth', async (req, res) => {
                       },"jwtPrivateKey",{expiresIn: "15m"});
                     res.status(200).send(user.email + " gevonden" + "token: " + token );
                    }
-  
-                else 
-                    res.send('Wachtwoord fout')
+                  else res.send('Wachtwoord fout')
                 }
-                else 
-                  res.send("Gebruiker niet gevonden")
+                else res.send("Gebruiker niet gevonden")
             } 
-            else 
-              res.send(error);
+            else res.send(error);
       })
-
-
    }
   );
-  
-  module.exports = router;
+    module.exports = router;

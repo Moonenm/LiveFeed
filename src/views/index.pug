@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  if feeds.length
+    table.listing-table
+      each feed in feeds
+        tr
+          th #{feed.titel}   
+        tr
+          td #{feed.inhoud}
+            a(href=feed.link) Meer lezen 
+            p
+            p #{feed.datum}
+  
+  else
+    p No feeds yet :(
